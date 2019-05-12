@@ -1,25 +1,19 @@
 import axios from "axios";
+const urlTemp = 'http://localhost:8000/api/movies'
 
-import constantes from '../constantes';
-
-function getUpcomingItens(filters) {
-    let urlTemp = 'http://localhost:8000/api/movies'
+function getUpcomingItens() {
+    
     return axios({
         method: "get",
-        url: urlTemp,
-        // params: filters
+        url: urlTemp
     });
 }
 
-function getMovie(id) {
-    // return axios({
-    //     method: "get",
-    //     url: `${constantes.SPOTIFY_URL_FEATURED_PLAYLISTS}`,
-    //     params: filters,
-    //     headers: {
-    //          'Authorization': `Bearer ${token}`
-    //     }
-    // });
+function getMovie(filters) {
+    return axios({
+        method: "get",
+        url: urlTemp+'/'+filters
+    });
 }
 
 export default {

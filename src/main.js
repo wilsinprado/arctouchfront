@@ -5,6 +5,7 @@ import React from "react";
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 
 import Home from "./components/home/home";
+import Movie from "./components/movie/movie";
 
 const Main = () => (
   <div className="container">
@@ -12,6 +13,7 @@ const Main = () => (
       <BrowserRouter>
         <Switch>
           <Route exact path='/' component={Home} />
+          <Route exact path='/movie/:id' component={Movie} />
         </Switch>
       </BrowserRouter>	
     </main>

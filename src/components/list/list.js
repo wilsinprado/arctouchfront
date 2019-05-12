@@ -78,6 +78,7 @@ class List extends Component {
             'minWidth': '200px'
         }
         const urlImg = 'http://image.tmdb.org/t/p/w185/';
+        const movieUrl = 'movie/';
         return (
             <Grid item xs={12}>
                 <Grid container direction="row" justify="center" alignItems="center">
@@ -91,7 +92,9 @@ class List extends Component {
                                             <TableCell align="right" style={widthCell}>
                                                 <img src={urlImg + row.backdrop_path}></img>
                                             </TableCell>
-                                            <TableCell align="right" style={widthCell}>{row.original_title}</TableCell>
+                                            <TableCell align="right" style={widthCell}>
+                                                <a href={movieUrl + row.id}>{row.original_title}</a>
+                                            </TableCell>
                                             <TableCell align="right" style={widthCell}>{row.release_date}</TableCell>
                                         </TableRow>
                                     </div>

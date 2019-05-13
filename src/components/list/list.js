@@ -56,7 +56,7 @@ class List extends Component {
     filterTableByName(){
         let stateAtual = this.state.listaItens;
         const stateFiltrado = stateAtual.filter( itens =>  {
-            return itens.name === this.props.filter.name
+            return itens.original_title === this.props.filter.name
         });
         this.setState({listaItens: stateFiltrado});
     }
@@ -70,6 +70,12 @@ class List extends Component {
             this.getItems();
         }
     }
+
+    handleChangePage = (event, page) => {
+        this.setState({ page });
+
+    };
+
 
     render() {
         const { listaItens, rowsPerPage, page } = this.state;
@@ -108,7 +114,6 @@ class List extends Component {
                         </Table>
                         </div>
                         <TablePagination
-                            rowsPerPageOptions={[5, 10, 25]}
                             component="div"
                             count={listaItens.length}
                             rowsPerPage={rowsPerPage}
@@ -120,7 +125,6 @@ class List extends Component {
                                 'aria-label': 'Next Page',
                             }}
                             onChangePage={this.handleChangePage}
-                            onChangeRowsPerPage={this.handleChangeRowsPerPage}
                         />
                     </Paper>
                 </Grid>

@@ -49,7 +49,7 @@ class List extends Component {
     }
       
     componentDidMount() {
-        this.getItems();
+        this.getItems(0);
     }
 
     filterTableByName(){

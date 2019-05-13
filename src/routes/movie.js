@@ -1,18 +1,18 @@
 import axios from "axios";
-const urlTemp = 'https://polar-waters-94846.herokuapp.com/api/movies'
+const urlTemp = 'https://polar-waters-94846.herokuapp.com/api/'
 
 function getUpcomingItens(page) {
     
     return axios({
         method: "get",
-        url: urlTemp+'/'+page
+        url: urlTemp+'movies/'+page
     });
 }
 
 function getMovie(filters) {
     return axios({
         method: "get",
-        url: urlTemp+'/'+filters
+        url: urlTemp+'movie/'+filters
     });
 }
 

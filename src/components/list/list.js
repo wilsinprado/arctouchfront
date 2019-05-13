@@ -21,7 +21,7 @@ class List extends Component {
             next: "",
             offset: "",
             previous: "",
-            total: "",
+            total: 10000,
             page: 0,
             rowsPerPage: 10
          };
@@ -30,10 +30,9 @@ class List extends Component {
     }
 
 
-    getItems() {
-        
-        let filter = this.prepareFilter(this.props.filter);
-        MovieRoutes.default.getUpcomingItens(filter).then(response => {
+    getItems(page) {
+        let pageFilter = page+1;
+        MovieRoutes.default.getUpcomingItens(pageFilter).then(response => {
           this.setState({ listaItens: response.data.results });
         }).catch((err) => {
           console.log(err);
@@ -73,12 +72,12 @@ class List extends Component {
 
     handleChangePage = (event, page) => {
         this.setState({ page });
-
+        this.getItems(page);
     };
 
 
     render() {
-        const { listaItens, rowsPerPage, page } = this.state;
+        const { listaItens, rowsPerPage, page, total } = this.state;
         const emptyRows = rowsPerPage - Math.min(rowsPerPage, listaItens.length - page * rowsPerPage);
         const widthCell = {
             'minWidth': '200px'
@@ -115,7 +114,7 @@ class List extends Component {
                         </div>
                         <TablePagination
                             component="div"
-                            count={listaItens.length}
+                            count={total}
                             rowsPerPage={rowsPerPage}
                             page={page}
                             backIconButtonProps={{

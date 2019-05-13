@@ -86,7 +86,8 @@ class Movie extends Component {
                     <label className="labelMovie">Overview</label>: {this.state.overview}
                 </Grid>
                 <Grid item xs={12}>
-                    <img src={urlImg + this.state.backdrop_path}></img>
+                        {this.state.backdrop_path !== null ? <img src={urlImg + this.state.backdrop_path}></img> : <img src={urlImg + this.state.poster_path}></img>}
+                    
                 </Grid>
             </Grid>
             </Paper>

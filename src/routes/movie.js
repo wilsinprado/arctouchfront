@@ -1,5 +1,5 @@
 import axios from "axios";
-const urlTemp = 'http://localhost:8000/api/movies'
+const urlTemp = 'https://polar-waters-94846.herokuapp.com/api/movies'
 
 function getUpcomingItens(filters) {
     
@@ -16,15 +16,7 @@ function getMovie(filters) {
     });
 }
 
-function getGenre(){
-    return axios({
-        method: "get",
-        url: "http://localhost:8000/api/genres"
-    })
-}
-
 export default {
     getUpcomingItens: getUpcomingItens,
-    getMovie: getMovie,
-    getGenre: getGenre
+    getMovie: getMovie
 };

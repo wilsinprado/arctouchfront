@@ -68,7 +68,7 @@ class List extends Component {
         }
 
         if (this.props.filter.name === ""){
-            this.getItems();
+            this.getItems(0);
         }
     }
 

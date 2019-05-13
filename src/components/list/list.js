@@ -6,6 +6,7 @@ import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
 import TablePagination from '@material-ui/core/TablePagination';
 import TableRow from '@material-ui/core/TableRow';
+import TableHead from '@material-ui/core/TableHead';
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
 
@@ -23,7 +24,7 @@ class List extends Component {
             previous: "",
             total: 10000,
             page: 0,
-            rowsPerPage: 10
+            rowsPerPage: 20
          };
         this.getItems = this.getItems.bind(this);
         this.filterTableByName = this.filterTableByName.bind(this);
@@ -33,7 +34,8 @@ class List extends Component {
     getItems(page) {
         let pageFilter = page+1;
         MovieRoutes.default.getUpcomingItens(pageFilter).then(response => {
-          this.setState({ listaItens: response.data.results });
+            
+            this.setState({ listaItens: response.data.results });
         }).catch((err) => {
           console.log(err);
         });
@@ -90,19 +92,27 @@ class List extends Component {
                     <Paper >
                         <div>
                         <Table>
+                        <TableHead>
+                            <TableRow>
+                                <TableCell>Poster</TableCell>
+                                <TableCell align="right">Title</TableCell>
+                                <TableCell align="right">Release Date</TableCell>
+                            </TableRow>
+                        </TableHead>
                             <TableBody>
-                                {listaItens.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map(row => (
-                                    <div>
+                                
+                                {listaItens.map(row => (
+                                    
                                         <TableRow key={row.id} >
                                             <TableCell align="right" style={widthCell}>
-                                                <img src={urlImg + row.backdrop_path}></img>
+                                                {row.backdrop_path !== null ? <img src={urlImg + row.backdrop_path}></img> : <img src={urlImg + row.poster_path}></img>}
                                             </TableCell>
                                             <TableCell align="right" style={widthCell}>
                                                 <a href={movieUrl + row.id}>{row.original_title}</a>
                                             </TableCell>
                                             <TableCell align="right" style={widthCell}>{row.release_date}</TableCell>
                                         </TableRow>
-                                    </div>
+                                   
                                 ))}
                                 {emptyRows > 0 && (
                                     <TableRow>
